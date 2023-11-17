@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dnevni Raspored</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Dnevni Raspored</h1>
+
+  <label for="dogadjaj">Događaj:</label>
+  <input type="text" id="dogadjaj" placeholder="Unesite događaj">
+
+  <label for="vreme">Vreme:</label>
+  <input type="text" id="vreme" placeholder="Unesite vreme">
+
+  <button onclick="dodajdogadjaj()">Dodaj Događaj</button>
+
+  <div id="schedule">
+    <h2>Raspored</h2>
+    <ul id="lista"></ul>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
