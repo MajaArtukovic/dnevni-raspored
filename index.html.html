@@ -1,29 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dnevni Raspored</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dnevni Raspored</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('slika.jpg'); 
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        #content {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #schedule {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Dnevni Raspored</h1>
 
-  <label for="dogadjaj">Događaj:</label>
-  <input type="text" id="dogadjaj" placeholder="Unesite događaj">
+<div id="content">
 
-  <label for="vreme">Vreme:</label>
-  <input type="text" id="vreme" placeholder="Unesite vreme">
+    <h1>Dnevni Raspored</h1>
 
-  <button onclick="dodajdogadjaj()">Dodaj Događaj</button>
+    <form id="scheduleForm">
+        <label for="action">Aktivnost:</label>
+        <input type="text" id="action" required>
 
-  <div id="schedule">
-    <h2>Raspored</h2>
-    <ul id="lista"></ul>
-  </div>
+        <label for="time">Vreme:</label>
+        <input type="time" id="time" required>
 
-  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>
-  <script src="app.js"></script>
+        <button type="button" onclick="addTask()">Dodaj zadatak</button>
+    </form>
+
+    <div id="schedule"></div>
+
+    <script>
+        function addTask() {
+            var action = document.getElementById('action').value;
+            var time = document.getElementById('time').value;
+
+            if (action && time) {
+                var scheduleDiv = document.getElementById('schedule');
+
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = 'checkbox' + scheduleDiv.childElementCount;
+
+                var label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.appendChild(document.createTextNode(action + ' - ' + time));
+
+                scheduleDiv.appendChild(checkbox);
+                scheduleDiv.appendChild(label);
+
+                document.getElementById('action').value = '';
+                document.getElementById('time').value = '';
+            }
+        }
+    </script>
+
+</div>
+
 </body>
 </html>
